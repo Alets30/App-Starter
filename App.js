@@ -8,10 +8,10 @@ import { faCloud } from '@fortawesome/free-solid-svg-icons';
 export default function App() {
   return (
     <View style={styles.container}>
-      <FontAwesomeIcon icon={faCloud} size="7x" style={{color: "#5398fb",} }/>
-      <Text>¡Bienvenido a mi aplicación!</Text>
-      <TextInput style={{width: "90%"}} placeholder="Correo electrónico"/>
-      <TextInput style={{width: "90%"}} placeholder="Contraseña"/>
+      <FontAwesomeIcon icon={faCloud} size="10x" style={{color: "#5398fb", marginBottom: "10px"} }/>
+      <Text style={{marginBottom: "10px"}}>¡Bienvenido a mi aplicación!</Text>
+      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5}} placeholder="Correo electrónico"/>
+      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5}} placeholder="Contraseña"/>
       <StatusBar style="auto" />
     </View>
   );
