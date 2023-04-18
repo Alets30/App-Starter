@@ -9,11 +9,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <FontAwesomeIcon icon={faCloud} size="10x" style={{color: "#5398fb", marginBottom: "10px"} }/>
-      <Text style={{marginBottom: "10px"}}>¡Bienvenido a mi aplicación!</Text>
-      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5}} placeholder="Correo electrónico"/>
-      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5}} placeholder="Contraseña"/>
-      <button style={{width: "90%", background: '#162749'}} href="#">
-      <Text style={{color: 'white'}}>Iniciar sesión</Text>
+      <Text style={{marginBottom: "10px", fontSize: '25px'}}>¡Bienvenido a mi aplicación!</Text>
+      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5, fontSize: '15px'}} placeholder="Correo electrónico"/>
+      <TextInput style={{width: "90%", padding: "10px", marginBottom: "10px", borderColor: "#bee8dd", borderWidth: 2, borderRadius: 5, fontSize: '15px'}} placeholder="Contraseña"/>
+      <button style={{width: "90%", background: '#162749', padding: '10px'}} href="#">
+      <Text style={{color: 'white', fontSize: '20px'}}>Iniciar sesión</Text>
       </button>
       <StatusBar style="auto" />
     </View>
