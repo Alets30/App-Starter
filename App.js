@@ -8,9 +8,13 @@ import { faDragon  } from '@fortawesome/free-solid-svg-icons/faDragon'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    'Montserrat-Black': require('./assets/fonts/Montserrat/static/Montserrat-Black.ttf'),
-    'Montserrat': require('./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf'),
-  });
+    'Montserrat-Black': require('./assets/fonts/Montserrat-Black.ttf'),
+    'Montserrat': require('./assets/fonts/Montserrat-VariableFont_wght.ttf')
+  })
+
+  if(!fontsLoaded)
+    return null;
+  
   return (
     <View style={estilos.contenedor}>
       <View style={[estilos.formulario, estilos.shadowProp]}>
@@ -39,7 +43,6 @@ const estilos = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center',
     backgroundColor: 'white',
     borderRadius: 8,
     paddingVertical: 45,
@@ -52,42 +55,43 @@ const estilos = StyleSheet.create({
     shadowRadius: 5,
   },
   titulo: {
-  marginBottom: "10px", 
-  fontSize: '25px',
+  marginBottom: 10, 
+  fontSize: 25,
+  textAlign: 'center',
   fontFamily: 'Montserrat-Black',
   },
   texto: {
-    fontSize: '12px',
+    fontSize: 12,
     fontFamily: 'Montserrat',
-    marginBottom: '10px'
+    marginBottom: 10
   },
   input: {
     width: "100%", 
-    padding: "10px", 
-    marginBottom: "10px", 
+    padding: 10, 
+    marginBottom: 10, 
     borderColor: "#bee8dd", 
     borderWidth: 2, 
     borderRadius: 5, 
-    fontSize: '15px',
+    fontSize: 15,
     fontFamily: 'Montserrat'
   },
   boton: {
     width: '100%',
-    textAlign: 'center',
-    padding: '10px',
-    fontSize: '20px',
+    padding: 10,
+    fontSize: 20,
     borderWidth: 3,
     borderRadius: 5,
-    marginBottom: '15px'
+    marginBottom: 15
   },
   textoBoton: {
-    fontSize: '18px',
+    fontSize: 18,
+    textAlign: 'center',
     fontFamily: 'Montserrat',
   },
   links: {
-    fontSize: '12px',
+    fontSize: 12,
     fontFamily: 'Montserrat',
-    marginBottom: '10px',
+    marginBottom: 10,
     color: 'blue'
   }
 });
