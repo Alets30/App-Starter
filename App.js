@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { useFonts } from 'expo-font';
@@ -9,6 +9,9 @@ import { faDragon  } from '@fortawesome/free-solid-svg-icons/faDragon'
 export default function App() {
   const [fontsLoaded] = useFonts({
     'Montserrat-Black': require('./assets/fonts/Montserrat-Black.ttf'),
+    'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+    'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+    'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
     'Montserrat': require('./assets/fonts/Montserrat-VariableFont_wght.ttf')
   })
 
@@ -16,30 +19,30 @@ export default function App() {
     return null;
   
   return (
-    <View style={estilos.contenedor}>
-      <View style={[estilos.formulario, estilos.shadowProp]}>
-        <FontAwesomeIcon style={estilos.icono} icon={ faDragon } />
-        <Text style={estilos.titulo}>¡Bienvenido a mi aplicación!</Text>
-        <TextInput label="Correo" style={estilos.input} placeholder="Correo electrónico" />
-        <TextInput label="Contraseña" secureTextEntry style={estilos.input} placeholder="Contraseña"/>
-        <TouchableOpacity style={estilos.boton}>
-          <Text style={estilos.textoBoton}>Iniciar sesión</Text>
+    <View style={styles.container}>
+      <View style={[styles.form, styles.shadowProp]}>
+        <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={100}/>
+        <Text style={styles.title}>¡Bienvenido a mi aplicación!</Text>
+        <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
+        <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.txtbutton}>Iniciar sesión</Text>
         </TouchableOpacity>
-        <Text style={estilos.texto}>¿Aún no tienes una cuenta?</Text>
-        <Text style={estilos.links}>¡Regístrate!</Text>
+        <Text style={styles.text}>¿Aún no tienes una cuenta?</Text>
+        <Text style={styles.links} onPress={() => Alert.alert('¡Hola!')}>¡Regístrate!</Text>
       </View>
     </View>
   );
 }
 
-const estilos = StyleSheet.create({
-  contenedor: {
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  formulario: {
+  form: {
     width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -50,47 +53,58 @@ const estilos = StyleSheet.create({
     marginVertical: 10
   },
   shadowProp: {
-    shadowColor: '#171717',
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowColor: "#2b405c",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 3,
+    elevation: 4,
   },
-  titulo: {
+  icon: {
+    color: '#2b405c'
+  },
+  title: {
   marginBottom: 10, 
   fontSize: 25,
   textAlign: 'center',
   fontFamily: 'Montserrat-Black',
   },
-  texto: {
-    fontSize: 12,
-    fontFamily: 'Montserrat',
-    marginBottom: 10
+  text: {
+    fontSize: 14,
+    fontFamily: 'Montserrat-Regular',
+    marginBottom: 10,
+    color: '#000'
   },
   input: {
     width: "100%", 
     padding: 10, 
     marginBottom: 10, 
-    borderColor: "#bee8dd", 
+    borderColor: "#15546d", 
     borderWidth: 2, 
     borderRadius: 5, 
     fontSize: 15,
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat-Medium'
   },
-  boton: {
-    width: '100%',
+  button: {
+    width: '80%',
     padding: 10,
     fontSize: 20,
-    borderWidth: 3,
+    borderWidth: 2,
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    backgroundColor: '#0aa4a0',
+    borderColor: '#15546d'
   },
-  textoBoton: {
+  txtbutton: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat-Bold',
   },
   links: {
-    fontSize: 12,
-    fontFamily: 'Montserrat',
+    fontSize: 14,
+    fontFamily: 'Montserrat-Medium',
     marginBottom: 10,
     color: 'blue'
   }
