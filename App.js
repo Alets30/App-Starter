@@ -1,10 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { useFonts } from 'expo-font';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faDragon  } from '@fortawesome/free-solid-svg-icons/faDragon'
+
+function SignIn({ navigation })
+{
+  return (
+    <View style={styles.container}>
+      <View style={[styles.form, styles.shadowProp]}>
+        <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={25}/>
+        <Text style={styles.title}>¡Bienvenido a mi aplicación!</Text>
+        <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
+        <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.txtbutton}>Iniciar sesión</Text>
+        </TouchableOpacity>
+        <Text style={styles.text}>¿Aún no tienes una cuenta?</Text>
+        <Text style={styles.links} onPress={() => navigation.navigate('SignUp')}>¡Regístrate!</Text>
+      </View>
+    </View>
+  );
+}
+
+function SignUp({ navigation })
+{
+  return (
+    <View style={styles.container}>
+      <View style={[styles.form, styles.shadowProp]}>
+        <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={25}/>
+        <Text style={styles.title}>Registro</Text>
+        <TextInput label="Nombre" style={styles.input} placeholder="Nombre" />
+        <TextInput label="Apellidos" style={styles.input} placeholder="Apellidos" />
+        <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
+        <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
+        <TextInput label="Repita la contraseña" secureTextEntry style={styles.input} placeholder="Repita la contraseña"/>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignIn')}>
+          <Text style={styles.txtbutton}>Registrar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,26 +61,19 @@ export default function App() {
     return null;
   
   return (
-    <View style={styles.container}>
-      <View style={[styles.form, styles.shadowProp]}>
-        <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={100}/>
-        <Text style={styles.title}>¡Bienvenido a mi aplicación!</Text>
-        <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
-        <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.txtbutton}>Iniciar sesión</Text>
-        </TouchableOpacity>
-        <Text style={styles.text}>¿Aún no tienes una cuenta?</Text>
-        <Text style={styles.links} onPress={() => Alert.alert('¡Hola!')}>¡Regístrate!</Text>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#d6efed',
     alignItems: 'center',
     justifyContent: 'center',
   },
