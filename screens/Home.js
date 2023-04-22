@@ -4,27 +4,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faDragon  } from '@fortawesome/free-solid-svg-icons/faDragon';
 import { useNavigation } from "@react-navigation/native";
 
-const SignIn = () => {
+const SignUp = () => {
     const navigation = useNavigation();
 
     return(
         <View style={styles.container}>
             <View style={[styles.form, styles.shadowProp]}>
                 <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={25}/>
-                <Text style={styles.title}>¡Bienvenido a mi aplicación!</Text>
-                <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
-                <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
-                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('HomeTab')}}>
-                    <Text style={styles.txtbutton}>Iniciar sesión</Text>
+                
+                <Text style={styles.title}>Home</Text>
+                <TouchableOpacity style={styles.button} >
+                    <Text style={styles.txtbutton} onPress={()=>{navigation.navigate('SignIn')}}>Regresar</Text>
                 </TouchableOpacity>
-                <Text style={styles.text}>¿Aún no tienes una cuenta?</Text>
-                <Text style={styles.links} onPress={()=>{navigation.navigate('SignUp')}}>¡Regístrate!</Text>
             </View>
         </View>
     );
 }
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create({
     container: {
@@ -94,7 +91,7 @@ const styles = StyleSheet.create({
       fontFamily: 'Montserrat-Bold',
     },
     links: {
-      fontSize: 16,
+      fontSize: 14,
       fontFamily: 'Montserrat-Medium',
       marginBottom: 10,
       color: 'blue'
