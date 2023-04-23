@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faDragon  } from '@fortawesome/free-solid-svg-icons/faDragon';
@@ -7,14 +8,41 @@ import { useNavigation } from "@react-navigation/native";
 const SignIn = () => {
     const navigation = useNavigation();
 
+    const [email, setEmail] = useState({
+      email: "",
+      emailError: ""
+    });
+
+    const [password, setPassword] = useState({
+      password: "",
+      passwordError: ""
+    });
+    
+    const emailValidator = () => {
+      if (email.email == "" || email.email == undefined) {
+        setEmail({...email, emailError: "Debe introducir un correo para continuar." });
+      } else {
+        setEmail({...email, emailError: "" });
+      }
+    };
+    const passwordValidator = () => {
+      if (password.password == "" || password.password == undefined) {
+        setPassword({...password, passwordError: "Por favor, introduzca una contraseña." });
+      } else {
+        setPassword({...password, passwordError: "" });
+      }
+    };
+
     return(
         <View style={styles.container}>
             <View style={[styles.form, styles.shadowProp]}>
                 <FontAwesomeIcon style={styles.icon} icon={ faDragon } size={25}/>
                 <Text style={styles.title}>¡Bienvenido a mi aplicación!</Text>
-                <TextInput label="Correo" style={styles.input} placeholder="Correo electrónico" />
-                <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña"/>
-                <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('HomeTab')}}>
+                <TextInput label="Correo" style={styles.input} inputMode="text" placeholder="Correo electrónico" onChangeText={(text) => {setEmail({ email: text })}}/>
+                <Text style={styles.error}>{email.emailError}</Text>
+                <TextInput label="Contraseña" secureTextEntry style={styles.input} placeholder="Contraseña" onChangeText={(text) => {setPassword({ password: text })}}/>
+                <Text style={styles.error}>{password.passwordError}</Text>
+                <TouchableOpacity style={styles.button} onPress={()=>{if (email.email != undefined && email.email != "" && password.password != undefined && password.password != "") {navigation.navigate('HomeTab');} else{emailValidator();passwordValidator();}}}>
                     <Text style={styles.txtbutton}>Iniciar sesión</Text>
                 </TouchableOpacity>
                 <Text style={styles.text}>¿Aún no tienes una cuenta?</Text>
@@ -98,5 +126,11 @@ const styles = StyleSheet.create({
       fontFamily: 'Montserrat-Medium',
       marginBottom: 10,
       color: 'blue'
+    },
+    error: {
+      fontSize: 12,
+      fontFamily: 'Montserrat-Regular',
+      marginBottom: 10,
+      color: '#d30224'
     }
   });

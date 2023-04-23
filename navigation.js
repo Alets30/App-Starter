@@ -15,7 +15,7 @@ const SignInStackNavigator = createNativeStackNavigator();
 
 function MyTabs(){
     return(
-        <Tab.Navigator initialRouteName="Home">
+        <Tab.Navigator initialRouteName="Home" backBehavior="none">
             <Tab.Screen 
             name="Home" 
             component={Home} 
@@ -25,8 +25,6 @@ function MyTabs(){
                 tabBarIcon: () => (
                     <FontAwesomeIcon color="#2b405c" size={30} icon={faHouse} />
                 )}}/>
-            <Tab.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
-            <Tab.Screen name="SignUp" component={SignUp} />
         </Tab.Navigator>
     );
 }
